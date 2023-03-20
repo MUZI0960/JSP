@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<Resource name="propertyService" auth="Container"
+            type="kr.or.ddit.props.service.PropertyServiceImpl1"
+            factory="org.apache.naming.factory.BeanFactory" />	
+</Context>

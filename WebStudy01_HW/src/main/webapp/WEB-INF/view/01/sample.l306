@@ -1,0 +1,11 @@
+<html>
+
+<style>
+	h4{
+		background-color: yellow;
+	}
+</style>
+	<body>
+		<h4>current server time : <%=time %> </h4>
+	</body>
+</html>
