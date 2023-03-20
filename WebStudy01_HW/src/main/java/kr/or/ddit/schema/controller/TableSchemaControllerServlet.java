@@ -10,9 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.schema.service.SchemaService;
+import kr.or.ddit.schema.service.SchemaServiceImpl;
 import kr.or.ddit.vo.TableSchemaVO;
 
-@WebServlet("/schema/tableSchema")
+@WebServlet("/schema/tableSchema.do")
 public class TableSchemaControllerServlet extends HttpServlet{
+	
+	private SchemaService service = new SchemaServiceImpl();
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		List<TableSchemaVO> list = service.retrieveTableSchemaList();
+		
+		req.setAttribute("list", list);
+		
+		req.getRequestDispatcher("/jsonView.view").forward(req, resp);
+		
+	}
 	
 }

@@ -22,11 +22,12 @@
 </table>
 <script type="text/javascript">
 	let listBody = $("#listBody");
-	$.getJSON("/schema/schemaView.do", data)
+	$.getJSON("<%=request.getContextPath()%>/schema/tableSchema.do")
 		.done(function(resp){
+			console.log(resp)
 			let trTags = [];
-			list = resp.list;
-			list.each(function(idx, TableSchemaVO){
+			
+			$(resp.list).each(function(idx, TableSchemaVO){
 				let tr = $("<tr>").append(
 							$("<td>").html(this.tableName)
 							, $("<td>").html(this.tablespaceName)

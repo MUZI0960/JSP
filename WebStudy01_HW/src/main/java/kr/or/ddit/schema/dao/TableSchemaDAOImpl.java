@@ -16,7 +16,6 @@ public class TableSchemaDAOImpl implements TableSchemaDAO {
 	public List<TableSchemaVO> selectTableSchemaList() {
 		String sql = " SELECT TABLE_NAME, TABLESPACE_NAME, NUM_ROWS FROM USER_TABLES ";
 		
-		TableSchemaVO vo = null;
 		
 		List<TableSchemaVO> list  = new ArrayList<TableSchemaVO>();
 		
@@ -26,7 +25,7 @@ public class TableSchemaDAOImpl implements TableSchemaDAO {
 			){
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				vo = new TableSchemaVO();
+				TableSchemaVO vo = new TableSchemaVO();
 				vo.setTableName(rs.getString("TABLE_NAME"));
 				vo.setTablespaceName(rs.getString("TABLESPACE_NAME"));
 				vo.setNumRows(rs.getInt("NUM_ROWS"));
