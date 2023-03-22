@@ -37,6 +37,24 @@
 			});
 			listBody.append(trTags);
 		});
+	
+	let modalBody = $("#modalBody");
+	let data = JSON.stringify( $(this).serializeObject() );
+	$.getJSON("<%=request.getContextPath()%>/schema/columnSchema", data)
+		.done(function(){
+			let trTags2 =[];
+			
+			$(resp.list).each(function(idx, ColumnSchemaVO){
+				let tr = $("<tr>").append(
+							$("<td>").html(this.tableName)
+							, $("<td>").html(this.columnName)
+							, $("<td>").html(this.dataType)
+				).data("source", this);		
+				trTags2.push(tr);
+			});
+			modalBody.append(trTags2);
+		});
+	
 </script>
 <jsp:include page="/includee/postScript.jsp"/>
 </body>
