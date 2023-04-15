@@ -10,7 +10,13 @@
 <jsp:include page="/includee/preScript.jsp"/>
 <c:if test="${not empty message }">
 	<script>
-		alert("${message}");
+		window.addEventListener("DOMContentLoaded", function(event){
+			Swal.fire({
+		        icon: 'error',
+		        title: 'Oops...',
+		        text: '${message}'
+		      })
+		})
 	</script>
 	<c:remove var="message" scope="session"/>
 </c:if>

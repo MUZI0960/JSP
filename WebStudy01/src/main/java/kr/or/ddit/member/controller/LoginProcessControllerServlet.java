@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import kr.or.ddit.member.exception.AuthenticateException;
 import kr.or.ddit.member.service.AuthenticateServiceImpl;
+import kr.or.ddit.mvc.internalResourceViewResolver;
 import kr.or.ddit.vo.MemberVO;
 
 /**
@@ -61,7 +62,9 @@ public class LoginProcessControllerServlet extends HttpServlet{
 			session.setAttribute("message", "필수 파라미터 누락");
 			viewName =  "/login/loginForm.jsp";
 		}
-		resp.sendRedirect(req.getContextPath()+viewName);
+//		resp.sendRedirect(req.getContextPath()+viewName);
+		viewName = "redirect:"+viewName;
+		new internalResourceViewResolver().viewResolve(viewName, req, resp);
 	}
 
 	private boolean validate(MemberVO input) {

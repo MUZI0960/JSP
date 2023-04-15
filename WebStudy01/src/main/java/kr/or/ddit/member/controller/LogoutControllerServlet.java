@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.mvc.internalResourceViewResolver;
+
 @WebServlet("/login/logout")
 public class LogoutControllerServlet extends HttpServlet{
 	
@@ -22,6 +24,9 @@ public class LogoutControllerServlet extends HttpServlet{
 		}
 //		session.removeAttribute("authMember");
 		session.invalidate(); // 유효하지 않는 세션으로 만들어줌.
-		resp.sendRedirect(req.getContextPath() + "/");
+//		resp.sendRedirect(req.getContextPath() + "/");
+		
+		String viewName = "redirect:/";
+		new internalResourceViewResolver().viewResolve(viewName, req, resp);
 	}
 }

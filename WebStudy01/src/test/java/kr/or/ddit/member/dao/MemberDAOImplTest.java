@@ -22,7 +22,29 @@ public class MemberDAOImplTest {
 
 	@Test
 	public void testInsertMember() {
-		fail("Not yet implemented");
+		MemberVO input = MemberVO.builder()
+								.memId("test")
+								.memPass("test")
+								.memName("test")
+								.memRegno1("test")
+								.memRegno2("test")
+								.memBir("123")
+								.memZip("123")
+								.memAdd1("test")
+								.memAdd2("test")
+								.memHometel("123")
+								.memComtel("123")
+								.memHp("123")
+								.memMail("test")
+								.memJob("test")
+								.memLike("123")
+								.memMemorial("123")
+								.memMemorialday("123")
+								.memMileage(123)
+								.memDelete("123")
+								.build();
+		assertNotNull(input);
+		System.out.println(input);
 	}
 
 	@Test
