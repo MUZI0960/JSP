@@ -1,0 +1,21 @@
+
+ALTER TABLE BUYER
+ADD (
+    BUYER_IMG BLOB -- 사업자등록증사본, buyerImage 로 업로드
+);
+
+ALTER TABLE BUYER
+ADD (
+    BUYER_CONTRACT VARCHAR2(200) -- 계약서 원본 파일의 저장명, contractFile 로 업로드
+);
+
+
+CREATE TABLE ATCH_FILE(
+    ATCH_ID NUMBER(5), -- PK, 첨부파일 아이디
+    ATCH_SEQ NUMBER(2), -- 첨부파일 순번
+    ATCH_MIME VARCHAR2(50), -- 첨부파일 컨텐츠 타입
+    ATCH_ORGIN_NAME VARCHAR2(100 CHAR), -- 첨부파일 원본명
+    ATCH_SAVE_NAME VARCHAR2(100 CHAR), -- 첨부파일 저장명
+    ATCH_SIZE NUMBER, -- 첨부파일 크기
+    ATCH_DATE TIMESTAMP -- 첨부파일 등록일    
+);

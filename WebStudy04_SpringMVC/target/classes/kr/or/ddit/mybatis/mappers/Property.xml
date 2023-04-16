@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.props.dao.PropertyDAO">
+	<select id="selectProperties" resultType="kr.or.ddit.props.vo.PropertyVO" parameterType="string">
+		SELECT PROPERTY_NAME, PROPERTY_VALUE, DESCRIPTION 
+		FROM DATABASE_PROPERTIES                          
+		<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(propertyName)">
+			WHERE PROPERTY_NAME = #{propertyName}		
+		</if>
+	</select>
+</mapper>

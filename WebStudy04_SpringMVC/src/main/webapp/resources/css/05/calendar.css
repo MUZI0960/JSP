@@ -1,0 +1,26 @@
+@charset "UTF-8";
+a.controlA{
+	cursor: pointer;
+}
+table{
+	width: 100%;
+	min-height: 500px;
+	border-collapse: collapse;
+}
+td,th{
+	border: 1px solid black;
+	text-align: center;
+	font-size: large;
+}
+.SUNDAY{
+	color: red;
+}
+.SATURDAY{
+	color: blue;
+}
+.disabled{
+	color: silver;
+}
+#today{
+	background-color: green;
+}

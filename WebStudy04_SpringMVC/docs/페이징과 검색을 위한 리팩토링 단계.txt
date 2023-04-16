@@ -1,0 +1,8 @@
+1. Pagination, SimpleCondition, PaginationRenderer
+2, refactoring
+ 1) paging 처리 : 한쌍의 쿼리(totalRecord, dataList) -> selectTotalRecord 추가
+ 2) dataList 조회시, Pagination 파라미터 전달 구조 필요(selectBuyerList 시그니처 변경).
+ 3) Buyer.xml , 검색조건과 페이징 속성으로 제한된 totalRecord/dataList 조회
+ 4) retrieveBuyerList 에서 totalRecord 설정 필요
+ 5) controller 에서 page, searchType, searchWord 파라미터에 대한 처리 추가.
+ 6) buyerList.jsp 검색 UI, 페이징 UI 추가 - 입력 UI / 전송 UI 분리구조.

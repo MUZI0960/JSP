@@ -1,0 +1,23 @@
+--<tr>
+--			<th>회원아이디</th>
+--			<td>
+--				<input type="text" name="memId" required="required" class="form-control" value="${member.memId}"/>
+--              <span class="error">${errors.memId }</span>
+--			</td>
+--		</tr>
+SELECT '<tr><th>' || COMMENTS || '</th><td>' ||
+    '<input type="' ||
+    CASE 
+    WHEN DATA_TYPE = 'NUMBER' OR DATA_TYPE = 'DATE' THEN LOWER(DATA_TYPE)
+    ELSE 'text' END ||
+    '" name="' || SNAKETOCAMEL(A.COLUMN_NAME) ||
+    '" ' || DECODE(NULLABLE, 'N', 'required', '') ||
+    ' maxlength="' || DATA_LENGTH || '"' ||
+    ' class="form-control" value="'||
+    '${'|| LOWER(A.TABLE_NAME) ||'.' || SNAKETOCAMEL(A.COLUMN_NAME) ||'}'||
+    '"/>' || '<span class="error">${errors.'|| SNAKETOCAMEL(A.COLUMN_NAME) ||'}</span>'||
+    '</td></tr>'
+
+FROM COLS A LEFT OUTER JOIN  USER_COL_COMMENTS B
+    ON (A.TABLE_NAME = B.TABLE_NAME AND A.COLUMN_NAME = B.COLUMN_NAME)
+WHERE A.TABLE_NAME = 'MEMBER';
