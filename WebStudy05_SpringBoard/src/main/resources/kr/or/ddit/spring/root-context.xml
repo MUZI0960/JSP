@@ -22,4 +22,6 @@
 		p:maxUploadSize="#{appInfo.maxUploadSize}"
 		p:maxUploadSizePerFile="#{appInfo.maxUploadSizePerFile}"
 	/>
+	
+	<util:list id="wsSessionList" />
 </beans>

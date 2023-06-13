@@ -12,6 +12,7 @@
 		<org.apache.logging.log4j-version>2.20.0</org.apache.logging.log4j-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
 		<org.springframework-version>5.3.6</org.springframework-version>
+		<org.springframework.security-version>5.7.8</org.springframework.security-version>
 	</properties>
 	<build>
 		<plugins>
@@ -52,6 +53,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 		<!-- Mybatis[JPA,iBatis,Hibernate] + Spring 을 위한 추가 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -87,7 +93,17 @@
 			<artifactId>tiles-jsp</artifactId>
 			<version>3.0.8</version>
 		</dependency>
-
+   <!-- Spring Security 활용 보안 처리 -->
+      <dependency>
+         <groupId>org.springframework.security</groupId>
+         <artifactId>spring-security-config</artifactId>
+         <version>${org.springframework.security-version}</version>
+      </dependency>
+      <dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-taglibs</artifactId>
+		<version>${org.springframework.security-version}</version>
+	  </dependency>
 		<!-- JSON marshalling -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

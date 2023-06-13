@@ -7,6 +7,9 @@ import java.util.Optional;
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.attatch.service.AttatchFileGroupService;
@@ -17,7 +20,9 @@ import kr.or.ddit.board.BoardInvalidPasswordException;
 import kr.or.ddit.board.dao.BoardDAO;
 import kr.or.ddit.board.vo.BoardVO;
 import kr.or.ddit.vo.Pagination;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class BoardServiceImpl implements BoardService {
 
@@ -30,17 +35,31 @@ public class BoardServiceImpl implements BoardService {
 	@Value("#{appInfo['board.attatchPath']}")
 	private File saveFolder;
 	
+	@Inject
+	private PasswordEncoder encoder;
+	
+	
 	@Override
 	public void createBoard(BoardVO board) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		log.info("현재 로그인 된 사용자 : {}", authentication);
 		AttatchFileGroupVO atchFileGroup = board.getAtchFileGroup();
 		Optional.ofNullable(atchFileGroup)
 				.ifPresent((afg)->{
 					fileService.createAttatchFileGroup(afg, saveFolder);
 					board.setBoAtch(afg.getAtchId());
 				});
+		encryptBoard(board);
 		boardDAO.insertBoard(board);
 	}
 	
+	private void encryptBoard(BoardVO board) {
+		// 입력받은 평문 비밀번호를 암호화
+		String encoded = encoder.encode(board.getBoPass());
+		// 암호화 된 비밀번호 다시 덮어 씌워줌
+		board.setBoPass(encoded);
+	}
+
 	@Override
 	public void retrieveBoardList(Pagination<BoardVO> pagination) {
 		int totalRecord = boardDAO.selectTotalRecord(pagination);
@@ -68,7 +87,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	private void boardAuthenticated(BoardVO inputBoard, String savedPass) {
-		if(! inputBoard.getBoPass().equals(savedPass)) {
+		// 암호화 된 비밀번호를 비교
+		if(! encoder.matches(inputBoard.getBoPass(), savedPass)) {
 			throw new BoardInvalidPasswordException(inputBoard.getBoNo());
 		}
 	}

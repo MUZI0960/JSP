@@ -57,6 +57,11 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
+	
+	<mvc:view-controller path="/login" view-name="login"/>
+	<mvc:view-controller path="/logout" view-name="/logout"/>
+	
+	<mvc:view-controller path="/websocket/sample1" view-name="websocket/sample1"/>
 </beans>
 
 

@@ -12,6 +12,8 @@
 		<config>src/main/resources/kr/or/ddit/spring/datasource-context.xml</config>
 		<config>src/main/resources/kr/or/ddit/spring/mapper-context.xml</config>
 		<config>src/main/resources/kr/or/ddit/spring/aop-context.xml</config>
+		<config>src/main/resources/kr/or/ddit/spring/security-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/websocket-context.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

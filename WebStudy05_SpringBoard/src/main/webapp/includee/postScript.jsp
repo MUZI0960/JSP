@@ -8,3 +8,10 @@
 
 <!-- Custom scripts for all pages-->
 <script src="${pageContext.request.contextPath }/resources/admin2/js/sb-admin-2.min.js"></script>
+
+<script>
+	let pushWs = new WebSocket("ws://localhost${cPath}/ws/push");
+	pushWs.onmessage = function(event){
+		alert(event.data);
+	}
+</script>
